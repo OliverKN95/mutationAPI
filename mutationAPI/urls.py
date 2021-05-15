@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mutationAPI.swagger import schema_view
+from mutationAPI.starter import Starter
 
 urlpatterns = [
+    path('', Starter.as_view(), name="starter"),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
