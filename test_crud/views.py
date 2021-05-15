@@ -34,6 +34,16 @@ class hasMutationViewset(GenericAPIView):
         dna_matrix = []
 
         if dna != '':
+
+            if logs.objects.filter(dna_provided=dna).count() > 0:
+                log = logs.objects.create(
+                        has_mutation=False,
+                        success=False,
+                        dna_provided=dna
+                    )
+                log.save()
+                return Response(_('La cadena proporcionada ya ha sido verificada con anterioridad.'), status=status.HTTP_403_FORBIDDEN)
+
             try:
                 match = False
 
