@@ -1,1 +1,1 @@
-web: gunicorn mutationAPI.wsgi --log-file -
+web: gunicorn mutationAPI.wsgi
